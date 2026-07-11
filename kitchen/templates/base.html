@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cloud Kitchen</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">🍴 Cloud Kitchen</div>
+    <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="{% url 'menu' %}">Menu</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'contact' %}">Contact</a></li>
+
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'cart' %}"> Cart</a></li>
+        <li><a href="#">👤 Hi {{ user.username }}</a></li>
+        <li><a href="{% url 'user_logout' %}">Logout</a></li>
+        
+        {% else %}
+        <li><a href="{% url 'user_login' %}"> Login</a></li>
+        <li><a href="{% url 'register' %}"> Register</a></li>
+        {% endif %}
+    </ul>
+</nav>
+{% if messages %}
+    {% for message in messages %}
+        <p style="text-align:center; color:green; font-weight:bold;">
+            {{ message }}
+        </p>
+    {% endfor %}
+{% endif %}
+
+{% block content %}
+
+{% endblock %}
+<footer style="background:#222; color:white; text-align:center; padding:20px; margin-top:60px;">
+
+    <h3>🍽️ Cloud Kitchen</h3>
+
+    <p>Fresh homemade food, prepared with love and delivered to your doorstep.</p>
+
+    <p>
+        📍 Hyderabad |
+        📞 +91 9876543210 |
+        📧 support@cloudkitchen.com
+    </p>
+
+    <hr style="width:60%; margin:15px auto; border:1px solid #555;">
+
+    <p>© 2026 Cloud Kitchen | <span style="color: #ff6b35;font-weight: bold;">Developed by Soumika</span> </p>
+
+</footer>
+
+</body>
+</html>

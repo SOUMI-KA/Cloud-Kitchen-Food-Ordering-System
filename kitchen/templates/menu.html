@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 style="text-align:center; margin-top:30px;">
+<h1>🍽️ Explore Our Menu</h1>
+
+<div style="display:flex; justify-content:center; margin-bottom:30px;">
+    <form method="GET" style="display:flex; gap:10px;">
+
+        <input
+            type="text"
+            name="q"
+            placeholder="🔍 Search delicious food..."
+            value="{{ query|default:'' }}"
+            style="width:320px;
+                   padding:12px;
+                   border:1px solid #ddd;
+                   border-radius:8px;
+                   font-size:16px;">
+
+        <button type="submit" class="search-btn">
+            🔍
+        </button>
+
+    </form>
+</div>
+</h2>
+<p style="text-align: center;font-family: Georgia, serif;font-style: italic;color: #666; font-size: 20px;margin-top: 10px; margin-bottom: 30px;">
+"🔥Hot, fresh, and delivered to your doorstep."
+</p>
+
+<div class="food-container">
+
+    {% for food in foods %}
+
+    <div class="food-card">
+        <img src="{{ food.image.url }}" width="200" height="150">
+
+        <h3>{{ food.food_name }}</h3>
+
+        <p>₹{{ food.price }}</p>
+
+        <p>{{ food.description }}</p>
+
+        <a href="{% url 'add_to_cart' food.id %}">
+            <button>Add to Cart</button>
+        </a>
+
+    </div>
+
+    {% endfor %}
+    {% if foods|length == 0 %}
+    <h3 style="text-align:center; color:red;">
+    😔 No food items found.
+    </h3>
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 style="text-align:center; margin:20px;">🛒 My Cart</h1>
+
+<div class="food-container">
+
+{% for item in cart_items %}
+
+<div class="food-card">
+
+    {% if item.food.image %}
+        <img src="{{ item.food.image.url }}" alt="{{ item.food.food_name }}">
+    {% endif %}
+
+    <h3>{{ item.food.food_name }}</h3>
+
+    <p>{{ item.food.description }}</p>
+
+    <h4>₹{{ item.food.price }}</h4>
+
+    <div style="display:flex; justify-content:center; align-items:center; gap:10px;">
+
+        <a href="{% url 'decrease_quantity' item.id %}">
+            <button class="qty-btn">-</button>
+        </a>
+
+        <span style="font-size:20px; font-weight:bold; width:30px; text-align:center;">
+            {{ item.quantity }}
+        </span>
+
+        <a href="{% url 'increase_quantity' item.id %}">
+            <button class="qty-btn">+</button>
+        </a>
+
+    </div>
+
+    <br>
+
+    <a href="{% url 'remove_from_cart' item.id %}">
+        <button class="remove-btn">Remove</button>
+    </a>
+
+</div>
+
+{% empty %}
+
+<h2 style="text-align:center;">Your Cart is Empty 😔</h2>
+
+{% endfor %}
+
+</div>
+
+<h2 style="text-align:center; margin-top:20px;">
+    Total: ₹{{ total }}
+</h2>
+
+<div style="text-align:center; margin:30px;">
+
+    <a href="{% url 'checkout' %}">
+        <button class="checkout-btn">
+            Proceed to Checkout
+        </button>
+    </a>
+
+</div>
+
+{% endblock %}

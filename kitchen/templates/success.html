@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div style="text-align:center; margin-top:60px;">
+
+    <h1>🎉 Order Placed Successfully!</h1>
+
+    <h2 style="color:green;">
+        Thank You for Ordering from Cloud Kitchen ❤️
+    </h2>
+
+    <p style="font-size:20px; margin-top:20px;">
+        Your delicious food is being prepared. 👨‍🍳
+    </p>
+
+    <p style="font-size:18px;">
+        Estimated Delivery Time: <b>30-40 Minutes</b>
+    </p>
+
+    <br>
+
+    <a href="/">
+        <button class="checkout-btn">🏠 Back to Home</button>
+    </a>
+
+    <a href="{% url 'track_order' %}">
+        <button class="checkout-btn">📦Track Order</button>
+    </a>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>🍴 Welcome to Cloud Kitchen</h1>
+
+<h2>Food Categories</h2>
+
+<div class="category-container">
+    {% for category in categories %}
+        <div class="category-card">
+            <h3>{{ category.category_name }}</h3>
+        </div>
+    {% endfor %}
+</div>
+
+<h2>Our Special Foods</h2>
+
+<div class="food-container">
+    {% for food in food_items %}
+        <div class="food-card">
+
+            {% if food.image %}
+                <img src="{{ food.image.url }}" alt="{{ food.food_name }}">
+            {% endif %}
+
+            <h3>{{ food.food_name }}</h3>
+            <p>{{ food.description }}</p>
+            <h4>₹{{ food.price }}</h4>
+
+            <a href="{% url 'order' food.id %}">
+                <button type="button" style="width: 170px; height: 45px;">
+                🛒 Order Now
+            </button>
+            </a>
+
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
