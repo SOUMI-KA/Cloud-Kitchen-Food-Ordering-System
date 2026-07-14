@@ -28,9 +28,9 @@ SECRET_KEY = 'django-insecure-a+e690(_a@ts%u*c8*1ih784pa+2es$)n*dynl-0y#!8=4tk$c
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'cloud-kitchen-food-ordering-system.onrender.com',
-    '127.0.0.1',
-    'localhost',
+    "cloud-kitchen-food-ordering-system.onrender.com",
+    "127.0.0.1",
+    "localhost",
 ]
 
 
@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'cloudkitchen.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.parse(
-        os.environ.get("DATABASE_URL")
+    os.environ.get("DATABASE_URL")
     )
 }
 
