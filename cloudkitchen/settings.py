@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +27,11 @@ SECRET_KEY = 'django-insecure-a+e690(_a@ts%u*c8*1ih784pa+2es$)n*dynl-0y#!8=4tk$c
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'cloud-kitchen-food-ordering-system.onrender.com',
+    '127.0.0.1',
+    'localhost',
+]
 
 
 # Application definition
@@ -74,14 +80,9 @@ WSGI_APPLICATION = 'cloudkitchen.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'cloudkitchen_db',
-        'USER': 'root',
-        'PASSWORD': 'NANNA@89',
-        'HOST': 'localhost',
-        'PORT': '3306',
-    }
+    'default': dj_database_url.parse(
+        os.environ.get("DATABASE_URL")
+    )
 }
 
 # Password validation
@@ -127,3 +128,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
