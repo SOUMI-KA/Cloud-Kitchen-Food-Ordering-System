@@ -24,7 +24,7 @@ A full-stack web application built using Python and Django that allows users to 
 - HTML
 - CSS
 - JavaScript
-- SQLite
+- MySQL
 
 ## 💡 Future Enhancements
 
